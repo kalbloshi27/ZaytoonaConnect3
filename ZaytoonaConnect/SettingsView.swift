@@ -22,7 +22,7 @@ struct SettingsView: View {
                             Image(systemName: "key.fill").foregroundStyle(Color.zGold).frame(width: 26)
                             TextField("6-digit Pair Code", text: $model.pairCode)
                                 .keyboardType(.numberPad)
-                                .onChange(of: model.pairCode) { _, newValue in
+                                .onChange(of: model.pairCode) { newValue in
                                     let digits = String(newValue.filter(\.isNumber).prefix(6))
                                     if digits != newValue { model.pairCode = digits }
                                 }

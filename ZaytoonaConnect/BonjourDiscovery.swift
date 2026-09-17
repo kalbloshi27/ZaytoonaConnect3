@@ -2,7 +2,7 @@ import Foundation
 import Combine
 
 @MainActor
-final class BonjourDiscovery: NSObject, ObservableObject, @preconcurrency NetServiceBrowserDelegate, @preconcurrency NetServiceDelegate {
+final class BonjourDiscovery: NSObject, ObservableObject, NetServiceBrowserDelegate, NetServiceDelegate {
     @Published private(set) var isSearching = false
     @Published private(set) var resolvedHost: String?
     @Published private(set) var resolvedPort: Int = 8765

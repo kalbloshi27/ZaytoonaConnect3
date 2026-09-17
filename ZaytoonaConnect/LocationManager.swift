@@ -3,7 +3,7 @@ import CoreLocation
 import Combine
 
 @MainActor
-final class LocationManager: NSObject, ObservableObject, @preconcurrency CLLocationManagerDelegate {
+final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published private(set) var location: CLLocation?
     @Published private(set) var authorizationStatus: CLAuthorizationStatus = .notDetermined
 
