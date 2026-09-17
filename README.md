@@ -1,41 +1,37 @@
-# ZaytoonaConnect
+# Zaytoona Connect — Design Match v3
 
-Fixed standalone iOS SwiftUI project for the Zaytoona / Tahoe ecosystem.
+This version is a focused UI refinement pass based on the approved Zaytoona/Tahoe concept image.
 
-## Connection baseline
-- iPhone Personal Hotspot / local network only
-- Bonjour service: `_zaytoona._tcp`
-- Tahoe receiver default port: `8765`
-- Pairing: 6-digit code
-- `POST /command` JSON: `{ "key": "123456", "type": "auto", "value": "..." }`
+## What changed
+- Custom premium bottom navigation instead of the generic system TabView appearance.
+- Home layout tightened to the approved hierarchy: brand, receiver status, Tahoe hero, metrics, saved location, walking/ETA and quick actions.
+- "Send to Tahoe" moved out of the main dashboard into the three-dot menu so Home stays visually clean.
+- Find My Tahoe rebuilt as a full-screen map with floating receiver controls and a bottom Tahoe card.
+- Parking rebuilt around the approved timer + rear Tahoe hero + saved-location + photo-strip layout.
+- Car Status rebuilt using the same card spacing, border, typography and green status language as the concept.
+- Trips and Settings now use the same visual system rather than looking like generic utility screens.
+- Keyboard handling kept: Done button, submit dismissal and interactive scroll dismissal.
+- No fake live car-battery data is shown. Unsupported receiver values are clearly marked as not reported.
+- iOS 16 compatibility is preserved.
+- Local receiver architecture is unchanged: port 8765, Pair Code, Bonjour `_zaytoona._tcp`, local Wi‑Fi/Personal Hotspot only.
+- GitHub Actions still builds and uploads `ZaytoonaConnect.ipa`.
 
-## Build
-Open `ZaytoonaConnect.xcodeproj` in Xcode 16.4+ and run the shared `ZaytoonaConnect` scheme.
+## Copy into your Git repository
+This ZIP is FLAT: after extraction you should directly see:
+- `.github`
+- `ZaytoonaConnect`
+- `ZaytoonaConnect.xcodeproj`
+- `README.md`
 
-GitHub Actions builds unsigned with `CODE_SIGNING_ALLOWED=NO` so CI does not need an Apple signing identity.
+Example:
 
-## What was fixed
-- All `foregroundStyle(.zGold)` usages are now `foregroundStyle(Color.zGold)`.
-- `Color.zGold` is defined in `Theme.swift`.
-- Bonjour and CoreLocation delegate callbacks use `nonisolated` + `Task { @MainActor ... }` to avoid Swift actor-isolation warnings becoming Swift 6 errors.
-- App icon asset catalog has a single assigned 1024x1024 iOS icon.
-- Local-network, Bonjour, and location usage descriptions are included in `Info.plist`.
+```bat
+robocopy "C:\Users\kokoj\Downloads\ZaytoonaConnect_DesignMatch_v3" "C:\Users\kokoj\Downloads\ZaytoonaConnect3" /E
+cd /d C:\Users\kokoj\Downloads\ZaytoonaConnect3
+git status
+git add .
+git commit -m "Zaytoona Design Match v3"
+git push origin main
+```
 
-
-## iOS 16 build fixes
-- Replaced the iOS 17-only MapCameraPosition/UserAnnotation API with the iOS 16 Map coordinateRegion API.
-- Replaced the iOS 17 two-parameter onChange closure with the iOS 16-compatible form.
-- Removed ineffective @preconcurrency conformance annotations while keeping delegate callbacks nonisolated.
-- Set the app target to iPhone only.
-- Generated the complete required iPhone AppIcon sizes.
-
-## Design-match v2
-This revision realigns the main iPhone app with the approved Zaytoona visual concept:
-- Home dashboard with Zaytoona branding, receiver status, Tahoe hero image, parking timer, phone battery, saved location, Walk to Tahoe and Send ETA actions.
-- Find My Tahoe map screen with saved Tahoe pin, walking distance estimate and Tahoe actions.
-- Parking screen with active timer, Tahoe imagery, saved position, photo strip and Start/Stop Parking.
-- Car Status tab with receiver, last connection, GPS accuracy, iPhone battery, local network and storage status.
-- Bottom tabs changed to Home / Car / Trips / Settings.
-- Keyboard issue fixed with interactive scroll dismissal plus a visible Done button above the keyboard, including number-pad fields.
-
-The Live Activity / Dynamic Island and Home Screen Widgets shown in the concept are separate iOS extension targets and are intentionally not faked inside the main app target. They can be added as the next build stage.
+Then open GitHub Actions and download the `ZaytoonaConnect-IPA` artifact after a successful build.

@@ -10,6 +10,7 @@ private struct TahoeMapPin: Identifiable {
 struct LocateView: View {
     @EnvironmentObject private var model: ZaytoonaModel
     @EnvironmentObject private var locationManager: LocationManager
+    @Environment(\.dismiss) private var dismiss
 
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 29.3759, longitude: 47.9774),
@@ -17,7 +18,7 @@ struct LocateView: View {
     )
 
     var body: some View {
-        ZStack(alignment: .bottom) {
+        ZStack {
             Map(
                 coordinateRegion: $region,
                 interactionModes: .all,
@@ -29,70 +30,81 @@ struct LocateView: View {
                         ZStack {
                             Circle()
                                 .fill(Color.zBackground)
-                                .frame(width: 62, height: 62)
+                                .frame(width: 66, height: 66)
                                 .overlay(Circle().stroke(Color.zCream, lineWidth: 2))
 
                             Image("TahoeFront")
                                 .resizable()
                                 .scaledToFill()
-                                .frame(width: 50, height: 50)
+                                .frame(width: 55, height: 55)
                                 .clipShape(Circle())
                         }
 
                         Image(systemName: "triangle.fill")
-                            .font(.system(size: 14))
+                            .font(.system(size: 13))
                             .rotationEffect(.degrees(180))
                             .foregroundStyle(Color.zCream)
                             .offset(y: -3)
                     }
                 }
             }
-            .ignoresSafeArea(edges: .bottom)
+            .ignoresSafeArea()
 
             VStack(spacing: 12) {
-                receiverBar
+                topBar
                 Spacer()
                 tahoeCard
             }
-            .padding(.horizontal, 16)
-            .padding(.top, 10)
-            .padding(.bottom, 16)
+            .padding(.horizontal, 15)
+            .padding(.top, 6)
+            .padding(.bottom, 12)
         }
-        .background(Color.zBackground)
-        .navigationTitle("Find My Tahoe")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarHidden(true)
         .onAppear {
             locationManager.start()
             recenter()
         }
         .onChange(of: locationManager.location) { _ in
-            if parkedCoordinate == nil { recenter() }
+            if parkedCoordinate == nil {
+                recenter()
+            }
         }
     }
 
-    private var receiverBar: some View {
-        HStack(spacing: 11) {
-            Image(systemName: "magnifyingglass")
-                .foregroundStyle(Color.zMuted)
-
-            VStack(alignment: .leading, spacing: 1) {
-                Text("Zaytoona")
-                    .font(.subheadline.weight(.semibold))
-                Text(model.isConnected ? receiverSubtitle : "Receiver offline")
-                    .font(.caption)
-                    .foregroundStyle(model.isConnected ? Color.zGreen : Color.zMuted)
+    private var topBar: some View {
+        HStack(spacing: 10) {
+            Button {
+                dismiss()
+            } label: {
+                ZIconCircle(systemName: "chevron.left", size: 38)
             }
+            .buttonStyle(.plain)
 
-            Spacer()
+            HStack(spacing: 10) {
+                Image(systemName: "magnifyingglass")
+                    .foregroundStyle(Color.zMuted)
+
+                VStack(alignment: .leading, spacing: 1) {
+                    Text("Zaytoona")
+                        .font(.subheadline.weight(.semibold))
+                    Text(model.isConnected ? receiverSubtitle : "Receiver offline")
+                        .font(.caption2)
+                        .foregroundStyle(model.isConnected ? Color.zGreen : Color.zMuted)
+                }
+
+                Spacer()
+
+                ZStatusDot(active: model.isConnected)
+            }
+            .zThinCard(10)
 
             Button {
                 recenter()
             } label: {
-                ZRoundIcon(systemName: "location.fill")
+                ZIconCircle(systemName: "location.fill", size: 38)
             }
             .buttonStyle(.plain)
         }
-        .zThinCard()
     }
 
     private var tahoeCard: some View {
@@ -101,8 +113,8 @@ struct LocateView: View {
                 Image("TahoeFront")
                     .resizable()
                     .scaledToFill()
-                    .frame(width: 70, height: 60)
-                    .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+                    .frame(width: 69, height: 58)
+                    .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
 
                 VStack(alignment: .leading, spacing: 3) {
                     Text("Zaytoona")
@@ -110,7 +122,7 @@ struct LocateView: View {
                     Text(walkingInfo)
                         .font(.subheadline)
                     Text(parkingCoordinateText)
-                        .font(.caption)
+                        .font(.caption2)
                         .foregroundStyle(Color.zMuted)
                         .lineLimit(1)
                 }
@@ -121,6 +133,7 @@ struct LocateView: View {
                     recenter()
                 } label: {
                     Image(systemName: "viewfinder")
+                        .font(.system(size: 16, weight: .semibold))
                         .frame(width: 38, height: 38)
                         .background(Circle().fill(Color.zPanelStrong))
                 }
@@ -144,7 +157,7 @@ struct LocateView: View {
             }
             .disabled(parkedCoordinate == nil)
 
-            HStack(spacing: 14) {
+            HStack(spacing: 11) {
                 mapAction(icon: "speaker.wave.2.fill", title: "Play Sound") {
                     Task { await sendTahoeCommand("FIND_SOUND") }
                 }
@@ -158,20 +171,24 @@ struct LocateView: View {
                 }
             }
         }
-        .zCard()
+        .zCard(14, radius: 21)
     }
 
-    private func mapAction(icon: String, title: String, action: @escaping () -> Void) -> some View {
+    private func mapAction(
+        icon: String,
+        title: String,
+        action: @escaping () -> Void
+    ) -> some View {
         Button(action: action) {
             VStack(spacing: 6) {
                 Image(systemName: icon)
-                    .font(.system(size: 18, weight: .semibold))
-                    .frame(width: 42, height: 42)
+                    .font(.system(size: 17, weight: .semibold))
+                    .frame(width: 39, height: 39)
                     .background(Circle().fill(Color.zPanelStrong))
                 Text(title)
                     .font(.caption2)
                     .lineLimit(1)
-                    .minimumScaleFactor(0.75)
+                    .minimumScaleFactor(0.72)
             }
             .frame(maxWidth: .infinity)
         }
@@ -186,26 +203,46 @@ struct LocateView: View {
     private var parkedCoordinate: CLLocationCoordinate2D? {
         guard let session = model.parkingSession,
               let latitude = session.latitude,
-              let longitude = session.longitude else { return nil }
+              let longitude = session.longitude else {
+            return nil
+        }
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 
     private var receiverSubtitle: String {
-        if let ms = model.lastLatencyMs { return "Live • \(ms) ms" }
+        if let ms = model.lastLatencyMs {
+            return "Live • \(ms) ms"
+        }
         return "Live • Local Network"
     }
 
     private var walkingInfo: String {
         guard let parkedCoordinate,
-              let current = locationManager.location else { return "Saved parking location" }
-        let parked = CLLocation(latitude: parkedCoordinate.latitude, longitude: parkedCoordinate.longitude)
+              let current = locationManager.location else {
+            return "Saved parking location"
+        }
+
+        let parked = CLLocation(
+            latitude: parkedCoordinate.latitude,
+            longitude: parkedCoordinate.longitude
+        )
         let meters = current.distance(from: parked)
-        return String(format: "%.1f km • ~%d min walk", meters / 1000, max(1, Int(meters / 80)))
+        return String(
+            format: "%.1f km • ~%d min walk",
+            meters / 1000,
+            max(1, Int(meters / 80))
+        )
     }
 
     private var parkingCoordinateText: String {
-        guard let parkedCoordinate else { return "No Tahoe parking location saved" }
-        return String(format: "%.5f, %.5f", parkedCoordinate.latitude, parkedCoordinate.longitude)
+        guard let parkedCoordinate else {
+            return "No Tahoe parking location saved"
+        }
+        return String(
+            format: "%.5f, %.5f",
+            parkedCoordinate.latitude,
+            parkedCoordinate.longitude
+        )
     }
 
     private func recenter() {
@@ -226,9 +263,14 @@ struct LocateView: View {
 
     private func walkToTahoe() {
         guard let parkedCoordinate else { return }
+
         let item = MKMapItem(placemark: MKPlacemark(coordinate: parkedCoordinate))
         item.name = "Zaytoona"
-        item.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking])
+        item.openInMaps(
+            launchOptions: [
+                MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking
+            ]
+        )
     }
 
     @MainActor

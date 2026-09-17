@@ -18,16 +18,19 @@ struct SettingsView: View {
                 Color.zBackground.ignoresSafeArea()
 
                 ScrollView {
-                    VStack(spacing: 16) {
+                    VStack(spacing: 15) {
                         HStack {
-                            VStack(alignment: .leading, spacing: 4) {
+                            VStack(alignment: .leading, spacing: 3) {
                                 Text("Settings")
-                                    .font(.largeTitle.bold())
+                                    .font(.title2.bold())
                                 Text("Tahoe receiver and pairing")
                                     .font(.subheadline)
                                     .foregroundStyle(Color.zMuted)
                             }
+
                             Spacer()
+
+                            ZStatusDot(active: model.isConnected)
                         }
 
                         sectionCard(title: "Connection") {
@@ -51,20 +54,26 @@ struct SettingsView: View {
                                     .keyboardType(.URL)
                                     .submitLabel(.done)
                                     .onSubmit {
-                                        focusedField = nil
-                                        hideKeyboard()
+                                        dismissKeyboard()
                                     }
                                     .padding(12)
-                                    .background(RoundedRectangle(cornerRadius: 13).fill(Color.black.opacity(0.34)))
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 13, style: .continuous)
+                                            .fill(Color.black.opacity(0.34))
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 13, style: .continuous)
+                                                    .stroke(Color.zBorder, lineWidth: 1)
+                                            )
+                                    )
                             }
                             .padding(.vertical, 12)
 
                             Button {
-                                focusedField = nil
-                                hideKeyboard()
+                                dismissKeyboard()
                                 discovery.start()
                             } label: {
                                 Label("Auto Find My Tahoe", systemImage: "location.magnifyingglass")
+                                    .font(.subheadline.weight(.semibold))
                                     .frame(maxWidth: .infinity)
                                     .padding(.vertical, 12)
                             }
@@ -83,31 +92,58 @@ struct SettingsView: View {
                                     .keyboardType(.numberPad)
                                     .onChange(of: model.pairCode) { newValue in
                                         let digits = String(newValue.filter(\.isNumber).prefix(6))
-                                        if digits != newValue { model.pairCode = digits }
+                                        if digits != newValue {
+                                            model.pairCode = digits
+                                        }
                                     }
                             }
                             .padding(12)
-                            .background(RoundedRectangle(cornerRadius: 13).fill(Color.black.opacity(0.34)))
+                            .background(
+                                RoundedRectangle(cornerRadius: 13, style: .continuous)
+                                    .fill(Color.black.opacity(0.34))
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 13, style: .continuous)
+                                            .stroke(Color.zBorder, lineWidth: 1)
+                                    )
+                            )
                         }
 
                         sectionCard(title: "Receiver") {
-                            settingsRow(icon: "network", title: "Port", value: String(model.discoveredPort))
+                            settingsRow(
+                                icon: "network",
+                                title: "Port",
+                                value: String(model.discoveredPort)
+                            )
                             separator
-                            settingsRow(icon: "lock.shield", title: "Transport", value: "Hotspot / Local Network")
+                            settingsRow(
+                                icon: "lock.shield",
+                                title: "Transport",
+                                value: "Hotspot / Local Network"
+                            )
                             separator
-                            settingsRow(icon: "car.fill", title: "Navigation", value: "Waze on Tahoe")
+                            settingsRow(
+                                icon: "car.fill",
+                                title: "Navigation",
+                                value: "Waze on Tahoe"
+                            )
                             separator
-                            settingsRow(icon: "play.rectangle.fill", title: "CarPlay", value: "Separate launcher button")
+                            settingsRow(
+                                icon: "play.rectangle.fill",
+                                title: "CarPlay",
+                                value: "Separate launcher button"
+                            )
                         }
 
                         Button {
-                            focusedField = nil
-                            hideKeyboard()
+                            dismissKeyboard()
                             Task { await testConnection() }
                         } label: {
                             HStack {
                                 Spacer()
-                                if testing { ProgressView().tint(.black) }
+                                if testing {
+                                    ProgressView()
+                                        .tint(.black)
+                                }
                                 Text(testing ? "Testing…" : "Test Connection")
                                     .fontWeight(.semibold)
                                 Spacer()
@@ -123,8 +159,9 @@ struct SettingsView: View {
                             .font(.caption)
                             .foregroundStyle(Color.zMuted)
                     }
-                    .padding(18)
-                    .padding(.bottom, 24)
+                    .padding(.horizontal, 17)
+                    .padding(.top, 16)
+                    .padding(.bottom, 25)
                 }
                 .scrollDismissesKeyboard(.interactively)
             }
@@ -133,8 +170,7 @@ struct SettingsView: View {
                 ToolbarItemGroup(placement: .keyboard) {
                     Spacer()
                     Button("Done") {
-                        focusedField = nil
-                        hideKeyboard()
+                        dismissKeyboard()
                     }
                 }
             }
@@ -147,30 +183,45 @@ struct SettingsView: View {
             .frame(height: 1)
     }
 
-    private func sectionCard<Content: View>(title: String, @ViewBuilder content: () -> Content) -> some View {
+    private func sectionCard<Content: View>(
+        title: String,
+        @ViewBuilder content: () -> Content
+    ) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             ZSectionTitle(title: title)
-                .padding(.bottom, 12)
+                .padding(.bottom, 11)
             content()
         }
         .zCard()
     }
 
-    private func settingsRow(icon: String, title: String, value: String) -> some View {
+    private func settingsRow(
+        icon: String,
+        title: String,
+        value: String
+    ) -> some View {
         HStack(spacing: 12) {
             Image(systemName: icon)
                 .foregroundStyle(Color.zCream)
                 .frame(width: 25)
+
             Text(title)
                 .font(.subheadline)
+
             Spacer()
+
             Text(value)
                 .font(.caption)
                 .foregroundStyle(Color.zMuted)
                 .multilineTextAlignment(.trailing)
                 .lineLimit(2)
         }
-        .padding(.vertical, 11)
+        .padding(.vertical, 10)
+    }
+
+    private func dismissKeyboard() {
+        focusedField = nil
+        hideKeyboard()
     }
 
     @MainActor
@@ -178,7 +229,11 @@ struct SettingsView: View {
         testing = true
         defer { testing = false }
 
-        let result = await ZaytoonaClient().healthStatus(host: model.activeHost, port: model.discoveredPort)
+        let result = await ZaytoonaClient().healthStatus(
+            host: model.activeHost,
+            port: model.discoveredPort
+        )
+
         if result.ok {
             model.markConnected(latency: result.latencyMs)
             model.lastMessage = "Tahoe connected successfully"
