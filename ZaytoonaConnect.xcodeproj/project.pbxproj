@@ -1,0 +1,231 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0669EEBA99A0E7CB026AD2FE /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045AF74E6620E40C0FC711EE /* ActivityView.swift */; };
+		DE581535681FF70912ED5F1D /* BonjourDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EC773A84070AFA051F2B57 /* BonjourDiscovery.swift */; };
+		C6A5AA1937C362EFE96D3E28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EED8A2ED0BAE0359DC140A /* ContentView.swift */; };
+		6754944F888ECEEC531D1E1C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E56345000F33D2B50FBEFE /* HomeView.swift */; };
+		0DEE627FDC2D808C91D71F3E /* LocateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7B3065E1C00CFCB28B513 /* LocateView.swift */; };
+		B03585A79569770C60D94E69 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9680CEFFF98962A39DF2AFB1 /* LocationManager.swift */; };
+		825DAA6CBBA7190D7668CBF6 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174EDCD4A42C457F3C1474B5 /* Models.swift */; };
+		FACDE1463459E59D944D3C0C /* ParkingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB3F5910E5BDBE5C687173F /* ParkingView.swift */; };
+		8139624898A349ADA4ED5613 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21A48F4CE5EDCAA60D410E3 /* SettingsView.swift */; };
+		4E0DD880613220F8CF2C9081 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DA258BBA4D387EDC619837 /* ShareSheet.swift */; };
+		29BB008AD9933FF8A77ED150 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A099E74EC0E0C3FABA0DB7 /* Theme.swift */; };
+		F444DC73553A2838392ED421 /* ZaytoonaClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765C7FF61A1B01D4F76305BC /* ZaytoonaClient.swift */; };
+		C653A15EEEE0B451BE434C5C /* ZaytoonaConnectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872A7EA7366A85147438E6D6 /* ZaytoonaConnectApp.swift */; };
+		DC7968B439F758849DE34016 /* ZaytoonaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF34CF7C270A2FBDB0010219 /* ZaytoonaModel.swift */; };
+		DE5AFB66E1067D7F39422B6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A957E0AE3820AB8D01523625 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		045AF74E6620E40C0FC711EE /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		95EC773A84070AFA051F2B57 /* BonjourDiscovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonjourDiscovery.swift; sourceTree = "<group>"; };
+		B5EED8A2ED0BAE0359DC140A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D5E56345000F33D2B50FBEFE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		65A7B3065E1C00CFCB28B513 /* LocateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocateView.swift; sourceTree = "<group>"; };
+		9680CEFFF98962A39DF2AFB1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		174EDCD4A42C457F3C1474B5 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		4AB3F5910E5BDBE5C687173F /* ParkingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingView.swift; sourceTree = "<group>"; };
+		B21A48F4CE5EDCAA60D410E3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		79DA258BBA4D387EDC619837 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		F1A099E74EC0E0C3FABA0DB7 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		765C7FF61A1B01D4F76305BC /* ZaytoonaClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZaytoonaClient.swift; sourceTree = "<group>"; };
+		872A7EA7366A85147438E6D6 /* ZaytoonaConnectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZaytoonaConnectApp.swift; sourceTree = "<group>"; };
+		BF34CF7C270A2FBDB0010219 /* ZaytoonaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZaytoonaModel.swift; sourceTree = "<group>"; };
+		A957E0AE3820AB8D01523625 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		34A0463128B669559EE96BBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71CCD365E3A654DA84DBA191 /* ZaytoonaConnect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZaytoonaConnect.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6BC9136C2E1B992EF374A2EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8D3FC6DB5D0827F168A73277 = {
+			isa = PBXGroup;
+			children = (
+				BB02FE6C4678B79B215868AF /* ZaytoonaConnect */,
+				1BADDC1D73C1A20F347483E1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BB02FE6C4678B79B215868AF /* ZaytoonaConnect */ = {
+			isa = PBXGroup;
+			children = (
+				045AF74E6620E40C0FC711EE /* ActivityView.swift */,
+				95EC773A84070AFA051F2B57 /* BonjourDiscovery.swift */,
+				B5EED8A2ED0BAE0359DC140A /* ContentView.swift */,
+				D5E56345000F33D2B50FBEFE /* HomeView.swift */,
+				65A7B3065E1C00CFCB28B513 /* LocateView.swift */,
+				9680CEFFF98962A39DF2AFB1 /* LocationManager.swift */,
+				174EDCD4A42C457F3C1474B5 /* Models.swift */,
+				4AB3F5910E5BDBE5C687173F /* ParkingView.swift */,
+				B21A48F4CE5EDCAA60D410E3 /* SettingsView.swift */,
+				79DA258BBA4D387EDC619837 /* ShareSheet.swift */,
+				F1A099E74EC0E0C3FABA0DB7 /* Theme.swift */,
+				765C7FF61A1B01D4F76305BC /* ZaytoonaClient.swift */,
+				872A7EA7366A85147438E6D6 /* ZaytoonaConnectApp.swift */,
+				BF34CF7C270A2FBDB0010219 /* ZaytoonaModel.swift */,
+				A957E0AE3820AB8D01523625 /* Assets.xcassets */,
+				34A0463128B669559EE96BBF /* Info.plist */,
+			);
+			path = ZaytoonaConnect;
+			sourceTree = "<group>";
+		};
+		1BADDC1D73C1A20F347483E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				71CCD365E3A654DA84DBA191 /* ZaytoonaConnect.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		42AEFBAE01D2DFD981F7DA7D /* ZaytoonaConnect */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAF116FE40D68E4ABB26094B /* Build configuration list for PBXNativeTarget "ZaytoonaConnect" */;
+			buildPhases = (
+				F680599402C0D80E245DE801 /* Sources */,
+				6BC9136C2E1B992EF374A2EA /* Frameworks */,
+				781C774F390DF12CD292A30B /* Resources */,
+			);
+			buildRules = ();
+			dependencies = ();
+			name = ZaytoonaConnect;
+			productName = ZaytoonaConnect;
+			productReference = 71CCD365E3A654DA84DBA191 /* ZaytoonaConnect.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4DC844ABCCFC0D132D087C1C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					42AEFBAE01D2DFD981F7DA7D = { CreatedOnToolsVersion = 16.4; };
+				};
+			};
+			buildConfigurationList = 56283EBD6DD86A56CED63937 /* Build configuration list for PBXProject "ZaytoonaConnect" */;
+			compatibilityVersion = "Xcode 16.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (en, Base);
+			mainGroup = 8D3FC6DB5D0827F168A73277;
+			productRefGroup = 1BADDC1D73C1A20F347483E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (42AEFBAE01D2DFD981F7DA7D /* ZaytoonaConnect */);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		781C774F390DF12CD292A30B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (DE5AFB66E1067D7F39422B6F /* Assets.xcassets in Resources */);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F680599402C0D80E245DE801 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0669EEBA99A0E7CB026AD2FE /* ActivityView.swift in Sources */,
+				DE581535681FF70912ED5F1D /* BonjourDiscovery.swift in Sources */,
+				C6A5AA1937C362EFE96D3E28 /* ContentView.swift in Sources */,
+				6754944F888ECEEC531D1E1C /* HomeView.swift in Sources */,
+				0DEE627FDC2D808C91D71F3E /* LocateView.swift in Sources */,
+				B03585A79569770C60D94E69 /* LocationManager.swift in Sources */,
+				825DAA6CBBA7190D7668CBF6 /* Models.swift in Sources */,
+				FACDE1463459E59D944D3C0C /* ParkingView.swift in Sources */,
+				8139624898A349ADA4ED5613 /* SettingsView.swift in Sources */,
+				4E0DD880613220F8CF2C9081 /* ShareSheet.swift in Sources */,
+				29BB008AD9933FF8A77ED150 /* Theme.swift in Sources */,
+				F444DC73553A2838392ED421 /* ZaytoonaClient.swift in Sources */,
+				C653A15EEEE0B451BE434C5C /* ZaytoonaConnectApp.swift in Sources */,
+				DC7968B439F758849DE34016 /* ZaytoonaModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		FA9139DD8B03E3F922556BF8 /* Debug */ = { isa = XCBuildConfiguration; buildSettings = {
+			ALWAYS_SEARCH_USER_PATHS = NO;
+			CLANG_ENABLE_MODULES = YES;
+			ENABLE_STRICT_OBJC_MSGSEND = YES;
+			GCC_C_LANGUAGE_STANDARD = gnu17;
+			IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+			SDKROOT = iphoneos;
+			SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+		}; name = Debug; };
+		FFE2104CCFAB79205AC64460 /* Release */ = { isa = XCBuildConfiguration; buildSettings = {
+			ALWAYS_SEARCH_USER_PATHS = NO;
+			CLANG_ENABLE_MODULES = YES;
+			ENABLE_NS_ASSERTIONS = NO;
+			GCC_C_LANGUAGE_STANDARD = gnu17;
+			IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+			SDKROOT = iphoneos;
+		}; name = Release; };
+		D8579749783A718541606A67 /* Debug */ = { isa = XCBuildConfiguration; buildSettings = {
+			ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+			CODE_SIGN_STYLE = Automatic;
+			CURRENT_PROJECT_VERSION = 1;
+			GENERATE_INFOPLIST_FILE = NO;
+			INFOPLIST_FILE = ZaytoonaConnect/Info.plist;
+			IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+			MARKETING_VERSION = 1.0;
+			PRODUCT_BUNDLE_IDENTIFIER = com.zaytoona.connect;
+			PRODUCT_NAME = "$(TARGET_NAME)";
+			SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+			SWIFT_EMIT_LOC_STRINGS = YES;
+			SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			SWIFT_VERSION = 5.0;
+			TARGETED_DEVICE_FAMILY = "1,2";
+		}; name = Debug; };
+		553194FECB7E1C4EBBAFB6CE /* Release */ = { isa = XCBuildConfiguration; buildSettings = {
+			ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+			CODE_SIGN_STYLE = Automatic;
+			CURRENT_PROJECT_VERSION = 1;
+			GENERATE_INFOPLIST_FILE = NO;
+			INFOPLIST_FILE = ZaytoonaConnect/Info.plist;
+			IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+			MARKETING_VERSION = 1.0;
+			PRODUCT_BUNDLE_IDENTIFIER = com.zaytoona.connect;
+			PRODUCT_NAME = "$(TARGET_NAME)";
+			SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+			SWIFT_COMPILATION_MODE = wholemodule;
+			SWIFT_EMIT_LOC_STRINGS = YES;
+			SWIFT_OPTIMIZATION_LEVEL = "-O";
+			SWIFT_VERSION = 5.0;
+			TARGETED_DEVICE_FAMILY = "1,2";
+		}; name = Release; };
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		56283EBD6DD86A56CED63937 /* Build configuration list for PBXProject "ZaytoonaConnect" */ = { isa = XCConfigurationList; buildConfigurations = (FA9139DD8B03E3F922556BF8 /* Debug */, FFE2104CCFAB79205AC64460 /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		EAF116FE40D68E4ABB26094B /* Build configuration list for PBXNativeTarget "ZaytoonaConnect" */ = { isa = XCConfigurationList; buildConfigurations = (D8579749783A718541606A67 /* Debug */, 553194FECB7E1C4EBBAFB6CE /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+/* End XCConfigurationList section */
+	};
+	rootObject = 4DC844ABCCFC0D132D087C1C /* Project object */;
+}
