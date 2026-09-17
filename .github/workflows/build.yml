@@ -1,0 +1,32 @@
+name: build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode 16.4
+        run: sudo xcode-select -s /Applications/Xcode_16.4.app/Contents/Developer
+      - name: Build ZaytoonaConnect
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -project ZaytoonaConnect.xcodeproj \
+            -scheme ZaytoonaConnect \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            clean build | tee xcodebuild.log
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xcodebuild-log
+          path: xcodebuild.log
