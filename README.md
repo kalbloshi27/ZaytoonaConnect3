@@ -28,3 +28,14 @@ GitHub Actions builds unsigned with `CODE_SIGNING_ALLOWED=NO` so CI does not nee
 - Removed ineffective @preconcurrency conformance annotations while keeping delegate callbacks nonisolated.
 - Set the app target to iPhone only.
 - Generated the complete required iPhone AppIcon sizes.
+
+## Design-match v2
+This revision realigns the main iPhone app with the approved Zaytoona visual concept:
+- Home dashboard with Zaytoona branding, receiver status, Tahoe hero image, parking timer, phone battery, saved location, Walk to Tahoe and Send ETA actions.
+- Find My Tahoe map screen with saved Tahoe pin, walking distance estimate and Tahoe actions.
+- Parking screen with active timer, Tahoe imagery, saved position, photo strip and Start/Stop Parking.
+- Car Status tab with receiver, last connection, GPS accuracy, iPhone battery, local network and storage status.
+- Bottom tabs changed to Home / Car / Trips / Settings.
+- Keyboard issue fixed with interactive scroll dismissal plus a visible Done button above the keyboard, including number-pad fields.
+
+The Live Activity / Dynamic Island and Home Screen Widgets shown in the concept are separate iOS extension targets and are intentionally not faked inside the main app target. They can be added as the next build stage.

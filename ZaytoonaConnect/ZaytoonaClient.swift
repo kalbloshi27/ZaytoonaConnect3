@@ -16,13 +16,8 @@ struct ZaytoonaClient {
     }
 
     func send(host: String?, port: Int, pairCode: String, type: String = "auto", value: String) async throws {
-        guard var host, !host.isEmpty else { throw ClientError.missingHost }
-        host = host.replacingOccurrences(of: "http://", with: "")
-            .replacingOccurrences(of: "https://", with: "")
-            .trimmingCharacters(in: CharacterSet(charactersIn: "/"))
-        if host.hasSuffix(".") { host.removeLast() }
-
-        guard let url = URL(string: "http://\(host):\(port)/command") else {
+        guard let cleanHost = clean(host: host) else { throw ClientError.missingHost }
+        guard let url = URL(string: "http://\(cleanHost):\(port)/command") else {
             throw ClientError.invalidURL
         }
 
@@ -38,21 +33,43 @@ struct ZaytoonaClient {
     }
 
     func health(host: String?, port: Int) async -> Bool {
-        guard var host, !host.isEmpty else { return false }
-        host = host.replacingOccurrences(of: "http://", with: "")
-            .replacingOccurrences(of: "https://", with: "")
-            .trimmingCharacters(in: CharacterSet(charactersIn: "/"))
-        if host.hasSuffix(".") { host.removeLast() }
-        guard let url = URL(string: "http://\(host):\(port)/health") else { return false }
+        let result = await healthStatus(host: host, port: port)
+        return result.ok
+    }
+
+    func healthStatus(host: String?, port: Int) async -> (ok: Bool, latencyMs: Int?) {
+        guard let cleanHost = clean(host: host),
+              let url = URL(string: "http://\(cleanHost):\(port)/health") else {
+            return (false, nil)
+        }
 
         var request = URLRequest(url: url)
         request.timeoutInterval = 3
+        let started = Date()
+
         do {
             let (_, response) = try await URLSession.shared.data(for: request)
-            guard let http = response as? HTTPURLResponse else { return false }
-            return (200...299).contains(http.statusCode)
+            guard let http = response as? HTTPURLResponse,
+                  (200...299).contains(http.statusCode) else {
+                return (false, nil)
+            }
+
+            let latency = max(1, Int(Date().timeIntervalSince(started) * 1000))
+            return (true, latency)
         } catch {
-            return false
+            return (false, nil)
         }
+    }
+
+    private func clean(host: String?) -> String? {
+        guard var host, !host.isEmpty else { return nil }
+        host = host
+            .replacingOccurrences(of: "http://", with: "")
+            .replacingOccurrences(of: "https://", with: "")
+            .trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if host.hasSuffix(".") { host.removeLast() }
+        return host.isEmpty ? nil : host
     }
 }
